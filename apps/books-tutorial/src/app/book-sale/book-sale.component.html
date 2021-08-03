@@ -1,0 +1,50 @@
+<!-- 
++this is going to be a search bar 
+and sort bar,
+sort by colum - make sure that double click on the same colum to thr right thing
+then the list of books.
+then an add button to add new book to the store.
++ an add to cart button for every book.-->
+<body>
+    <head>
+        <script type="text/javascript" src="book-list.component.ts">
+        </script>
+    </head>
+    <div class="body">
+        <div class="search-div">
+            <input type="text" name="search" [formControl]="searchBar"
+            autocomplete="off" placeholder="Search book or author">
+            <select name="categoryDropdown" id="categoryDropdown" [formControl]="category">
+                <option *ngFor= "let category of categories">{{category}}</option>
+            </select>
+            
+        </div>
+        <table class="book-list">
+            <tr class="first-row">
+                <th class="labels" *ngFor = "let label of labels">
+                    <div (click)="sortBy($event, label)">{{label}}</div>
+                </th>
+            </tr>
+            <tr class="book" *ngFor = "let book of (books | 
+            searchByCategory: category.value | 
+            searchPipe:searchBar.value | 
+            sortByCategory:sortByCategory)">
+                <td class="book-info">{{book.title}}</td>
+                <td class="book-info">{{book.author}}</td>
+                <td class="category">{{book.category}}</td>
+                <td class="price">{{book.price}}</td>
+                <td class="book-info">{{book.publication_date | date}} </td>
+                <td> 
+                    <div class="buttons">
+                        <button class="cart-button" (click)="cartClicked($event)">
+                            <span class="add-to-cart">Add to cart</span>
+                            <span class="added">Item added</span>
+                            <i class="fa fa-shopping-cart"></i> 
+                            <i class="fa fa-square"></i> 
+                        </button> 
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>

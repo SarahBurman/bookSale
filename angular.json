@@ -21,7 +21,7 @@
               "apps/books-tutorial/src/favicon.ico",
               "apps/books-tutorial/src/assets"
             ],
-            "styles": ["apps/books-tutorial/src/styles.scss"],
+            "styles": ["./node_modules/@angular/material/prebuilt-themes/indigo-pink.css", "apps/books-tutorial/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
