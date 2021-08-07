@@ -17,17 +17,6 @@ then an add button to add new book to the store.
             <select name="categoryDropdown" id="categoryDropdown" [formControl]="category">
                 <option *ngFor= "let category of categories">{{category}}</option>
             </select>
-                  <div class="icon-section">
-                    <div class='cart-wrapper'>
-                      <div class="cart">
-                        <ion-icon name="cart-outline"></ion-icon>
-                      </div>
-                      <div class="cart-badge"><span id="cart-count">3</span></div>
-                      <div class="box" id="box">
-                        <ion-icon name="cube-outline"></ion-icon>
-                      </div>
-                    </div>
-                  </div>
         </div>
         <table class="book-list">
             <tr class="first-row">
