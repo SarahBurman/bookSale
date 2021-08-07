@@ -6,21 +6,16 @@ import { book, Books } from './book-list';
 })
 export class SortByCategoryPipe implements PipeTransform {
 
-  sortState = new Array<{label: string,inc: boolean}>();
   labels = this.getLabels();
   sortedBooks = new Array<book>() ;
   
-  transform(books: book[] | null , sortValue: string): book[] | null {
+  transform(books: book[] | null , sortValue: string, inc:boolean): book[] | null {
     if(!sortValue || !books || sortValue === 'null'){
       return books;
     }
     if(this.labels.includes(sortValue) ) {
-      const labelState = this.sortState.find(state => state.label === sortValue);
-      if(labelState) {
         this.sortedBooks = books;
-        this.sort(sortValue,labelState.inc);
-        labelState.inc = !labelState.inc;
-      }
+        this.sort(sortValue,inc);
     }
 
     return this.sortedBooks;
@@ -33,9 +28,6 @@ export class SortByCategoryPipe implements PipeTransform {
       }
       else return label
     });
-    labels.forEach(label => {
-      this.sortState.push({label, inc:true});
-    }) 
     return labels;
   }
 
@@ -54,17 +46,17 @@ export class SortByCategoryPipe implements PipeTransform {
           break;
         case 'category':
           this.sortedBooks.sort((book1, book2) => {
-            return book1.category.localeCompare(book2.category);
+            return book2.category.localeCompare(book1.category);
           });
           break;
         case 'price':
           this.sortedBooks.sort((book1, book2) => {
-            return book1.price - book2.price;
+            return book2.price - book1.price;
           });
           break;
         case 'publication date':
           this.sortedBooks.sort((book1, book2) => {
-            return book1.publication_date.getTime() - book2.publication_date.getTime();
+            return book2.publication_date.getTime() - book1.publication_date.getTime();
           });
           break;
         default:
@@ -84,17 +76,17 @@ export class SortByCategoryPipe implements PipeTransform {
           break;
         case 'category':
           this.sortedBooks.sort((book1, book2) => {
-            return book2.category.localeCompare(book1.category);
+            return book1.category.localeCompare(book2.category);
           });
           break;
         case 'price':
           this.sortedBooks.sort((book1, book2) => {
-            return book2.price - book1.price;
+            return book1.price - book2.price;
           });
           break;
         case 'publication date':
           this.sortedBooks.sort((book1, book2) => {
-            return book2.publication_date.getTime() - book1.publication_date.getTime();
+            return book1.publication_date.getTime() - book2.publication_date.getTime();
           });
           break;
         default:

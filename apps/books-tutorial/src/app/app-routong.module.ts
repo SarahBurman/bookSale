@@ -13,6 +13,11 @@ const routes: Routes = [
   { 
     path: 'cart',
     component: ShopingCartComponent
+  },
+  { 
+    path: '**',
+    redirectTo: '',
+    component: AppComponent
   }
 ]
 
