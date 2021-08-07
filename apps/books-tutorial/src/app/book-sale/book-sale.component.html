@@ -1,10 +1,18 @@
 <!-- 
 +this is going to be a search bar 
+<<<<<<< Updated upstream
 and sort bar,
 sort by colum - make sure that double click on the same colum to thr right thing
 then the list of books.
+=======
++and sort bar,
++sort by colum - make sure that double click on the same colum to thr right thing
++then the list of books.
+add an icon of cart and an icon that counts the elements in it,
+on click it will open a short list of items in it.
+>>>>>>> Stashed changes
 then an add button to add new book to the store.
-+ an add to cart button for every book.-->
++ add to cart button for every book.-->
 <body>
     <head>
         <script type="text/javascript" src="book-list.component.ts">
@@ -17,7 +25,10 @@ then an add button to add new book to the store.
             <select name="categoryDropdown" id="categoryDropdown" [formControl]="category">
                 <option *ngFor= "let category of categories">{{category}}</option>
             </select>
+<<<<<<< Updated upstream
             
+=======
+>>>>>>> Stashed changes
         </div>
         <table class="book-list">
             <tr class="first-row">
@@ -46,5 +57,13 @@ then an add button to add new book to the store.
                 </td>
             </tr>
         </table>
+<<<<<<< Updated upstream
+=======
+        <div class="go-to-cart-list">
+            <a class="button" routerLink="cart">
+                <span class="go-to-shoping-cart">Go to cart</span>
+            </a> 
+        </div>
+>>>>>>> Stashed changes
     </div>
 </body>

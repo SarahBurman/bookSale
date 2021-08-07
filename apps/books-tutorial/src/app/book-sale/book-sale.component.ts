@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { book, Books, Category } from '../book-list/book-list';
 
 @Component({
@@ -16,7 +17,7 @@ export class BookSaleComponent implements OnInit {
   sortState = new Array<{label: string,inc: boolean}>();
   categories = ['', 'Biography', 'Children', 'Business', 'Computing', 'Crime & Thriller', 'Fiction',
   'History', 'Humour', 'Medical'];
-  constructor() { 
+  constructor(private router: Router) { 
     this.labels.forEach(label => {
       this.sortState.push({label, inc:false});
     }) 
@@ -47,4 +48,5 @@ export class BookSaleComponent implements OnInit {
   sortBy(event:Event, label: string): void {
     this.sortByCategory = label;
   }  
+
 } 
