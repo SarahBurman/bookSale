@@ -12,7 +12,9 @@ export class BookSaleComponent implements OnInit {
   searchBar = new FormControl(null);
   category = new FormControl(null);
   sortByCategory:string;
+  incDec:boolean;
   sortedBooks = Books;
+  shopingCart: Array<book>;
   sortState = new Array<{label: string,inc: boolean}>();
   categories = ['', 'Biography', 'Children', 'Business', 'Computing', 'Crime & Thriller', 'Fiction',
   'History', 'Humour', 'Medical'];
@@ -21,6 +23,8 @@ export class BookSaleComponent implements OnInit {
       this.sortState.push({label, inc:false});
     }) 
     this.sortByCategory = 'null';
+    this.incDec = true;
+    this.shopingCart = new Array();
   }
 
   ngOnInit(): void {}
@@ -40,11 +44,17 @@ export class BookSaleComponent implements OnInit {
     return labels;
   }
 
-  cartClicked(event: any): void {
-    event.target.classList.add('clicked');
+  cartClicked(button: any, book:book): void {
+    button.target.classList.add('clicked');
+    this.shopingCart.push(book);
   }
 
-  sortBy(event:Event, label: string): void {
+  sortBy(label: string): void {
     this.sortByCategory = label;
+    let lableState = this.sortState.find(state => state.label === label);
+    if(lableState){
+      this.incDec = lableState?.inc? true: false;
+      lableState.inc = !this.incDec;
+    }
   }  
 } 

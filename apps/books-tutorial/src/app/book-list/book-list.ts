@@ -134,7 +134,7 @@ export const Books: Array<book> = [
     },
     {
         id: 16,
-        title: "Get Your Shןt Together",
+        title: "Get Your Shit Together",
         author: "Sarah Knight",
         category: 'Humour',
         price: 62.18,

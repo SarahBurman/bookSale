@@ -1,8 +1,8 @@
 <!-- 
 +this is going to be a search bar 
-and sort bar,
-sort by colum - make sure that double click on the same colum to thr right thing
-then the list of books.
++and sort bar,
++sort by colum - make sure that double click on the same colum to thr right thing
++then the list of books.
 then an add button to add new book to the store.
 + an add to cart button for every book.-->
 <body>
@@ -17,18 +17,28 @@ then an add button to add new book to the store.
             <select name="categoryDropdown" id="categoryDropdown" [formControl]="category">
                 <option *ngFor= "let category of categories">{{category}}</option>
             </select>
-            
+                  <div class="icon-section">
+                    <div class='cart-wrapper'>
+                      <div class="cart">
+                        <ion-icon name="cart-outline"></ion-icon>
+                      </div>
+                      <div class="cart-badge"><span id="cart-count">3</span></div>
+                      <div class="box" id="box">
+                        <ion-icon name="cube-outline"></ion-icon>
+                      </div>
+                    </div>
+                  </div>
         </div>
         <table class="book-list">
             <tr class="first-row">
                 <th class="labels" *ngFor = "let label of labels">
-                    <div (click)="sortBy($event, label)">{{label}}</div>
+                    <div (click)="sortBy(label)">{{label}}</div>
                 </th>
             </tr>
             <tr class="book" *ngFor = "let book of (books | 
             searchByCategory: category.value | 
             searchPipe:searchBar.value | 
-            sortByCategory:sortByCategory)">
+            sortByCategory:sortByCategory:incDec)">
                 <td class="book-info">{{book.title}}</td>
                 <td class="book-info">{{book.author}}</td>
                 <td class="category">{{book.category}}</td>
@@ -36,7 +46,7 @@ then an add button to add new book to the store.
                 <td class="book-info">{{book.publication_date | date}} </td>
                 <td> 
                     <div class="buttons">
-                        <button class="cart-button" (click)="cartClicked($event)">
+                        <button class="cart-button" (click)="cartClicked($event, book)">
                             <span class="add-to-cart">Add to cart</span>
                             <span class="added">Item added</span>
                             <i class="fa fa-shopping-cart"></i> 
@@ -46,5 +56,10 @@ then an add button to add new book to the store.
                 </td>
             </tr>
         </table>
+        <div class="go-to-cart-list">
+            <a class="button">
+                <span class="go-to-shoping-cart">Go to cart</span>
+            </a> 
+        </div>
     </div>
 </body>
