@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
 import { book, Books, Category } from '../book-list/book-list';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'new-training-book-sale',
@@ -19,7 +19,7 @@ export class BookSaleComponent implements OnInit {
   sortState = new Array<{label: string,inc: boolean}>();
   categories = ['', 'Biography', 'Children', 'Business', 'Computing', 'Crime & Thriller', 'Fiction',
   'History', 'Humour', 'Medical'];
-  constructor(private router: Router) { 
+  constructor(private route: ActivatedRoute) { 
     this.labels.forEach(label => {
       this.sortState.push({label, inc:false});
     }) 
@@ -28,7 +28,11 @@ export class BookSaleComponent implements OnInit {
     this.shopingCart = new Array();
   }
 
-  ngOnInit(): void {}
+  ngOnInit() {
+    // this.route.queryParams.subscribe(params => {
+    //   this.name = params['name'];
+    // });
+  }
 
   get books(): book[] {
     return this.sortedBooks;
