@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { book, Books, Category } from '../book-list/book-list';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { BookListService } from '../book-list/book-list.service';
 
 @Component({
   selector: 'new-training-book-sale',
@@ -15,24 +16,18 @@ export class BookSaleComponent implements OnInit {
   sortByCategory:string;
   incDec:boolean;
   sortedBooks = Books;
-  shopingCart: Array<book>;
   sortState = new Array<{label: string,inc: boolean}>();
   categories = ['', 'Biography', 'Children', 'Business', 'Computing', 'Crime & Thriller', 'Fiction',
   'History', 'Humour', 'Medical'];
-  constructor(private route: ActivatedRoute) { 
+  constructor(private route: ActivatedRoute, private bookService: BookListService) {
     this.labels.forEach(label => {
       this.sortState.push({label, inc:false});
     }) 
     this.sortByCategory = 'null';
     this.incDec = true;
-    this.shopingCart = new Array();
   }
 
-  ngOnInit() {
-    // this.route.queryParams.subscribe(params => {
-    //   this.name = params['name'];
-    // });
-  }
+  ngOnInit() { }
 
   get books(): book[] {
     return this.sortedBooks;
@@ -51,7 +46,7 @@ export class BookSaleComponent implements OnInit {
 
   cartClicked(button: any, book:book): void {
     button.target.classList.add('clicked');
-    this.shopingCart.push(book);
+    this.bookService.addBookToShopingCart(book);
   }
 
   sortBy(label: string): void {

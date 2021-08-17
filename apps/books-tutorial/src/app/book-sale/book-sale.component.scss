@@ -4,21 +4,56 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap");
 
 
+.header {
+    display: flex;
+    justify-content: center;
+    line-height: 2em;
+    border-top: 2em solid white;
+    font-family: 'Lobster Two', cursive;
+    font-size: 17px;
+}
 
 .body {
-    margin: 3% 5%;
+    margin: 2em;
 }
 
 .search-div {
     display: flex;
     justify-content: space-between;
     margin-bottom: 1em;
+    padding: 0em 9.2em;
 }
 
 .book-list {
     border-collapse: collapse;
     background-color: #eee;
-    width: 100%;
+    margin: auto;
+    width: 80%;
+}
+
+.labels:nth-child(1) > div {
+    width: 100px;
+}
+
+.labels:nth-child(2) > div {
+    width: 100px;
+}
+
+.labels:nth-child(3) > div {
+    width: 53px;
+}
+
+.labels:nth-child(4) > div {
+    width: 26px;
+}
+.labels:nth-child(5) > div {
+    width: 35px;
+}
+.labels:nth-child(6) > div {
+    width: 57px;
+}
+.labels:nth-child(7) > div {
+    width: 10px;
 }
 
 .book-list td, .book-list th {
@@ -66,6 +101,7 @@
     justify-content: center;
     align-items: center;
 }
+
 .go-to-cart-list {
     display: flex;
     justify-content: flex-end;
@@ -100,6 +136,7 @@
     cursor: pointer;
     margin-right: 29px;
     margin-top: 24px;
+    text-decoration: none;
 }
 
 .go-to-shoping-cart {
