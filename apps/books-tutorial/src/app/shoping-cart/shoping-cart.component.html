@@ -1,6 +1,38 @@
 <div class="shoping-cart">
     <div class="header">Shopping cart</div>
     <div class="body">
-        
+        <div class="wrapper">
+             <div *ngFor="let book of (bookCart$ | async)" class="card">
+                <input type="checkbox" [id]="book.title" class="more" aria-hidden="true">
+                <div class="content">
+                    <div class="front">
+                        <div class="inner">
+                            <div class="book-img">
+                                <span class="material-icons remove-icon" (click)="removeBook(book)">
+                                    clear
+                                    </span>
+                                <img src="{{book.icon}}">
+                            </div>
+                            <label [attr.for]="book.title" class="button" aria-hidden="true">
+                                Details
+                            </label>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <div class="inner">
+                            <div class="description">
+                                {{book.publication_date | date}}
+                                {{book.category}}
+                            </div>
+                            <div class="title">{{book.title}}</div>
+                            <div class="author">{{book.author}}</div>
+                            <div class="price">{{book.price}}$</div>
+                            <label [attr.for]="book.title" class="button return" aria-hidden="true">
+                               Return
+                            </label>
+                        </div>
+                    </div>
+                </div>
+        </div>
     </div>
 </div>

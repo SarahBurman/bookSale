@@ -1,27 +1,34 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { book } from './book-list';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookListService {
-  shopingCart: Array<book>;
-  constructor() { 
-    this.shopingCart = new Array<book>();
-  }
+  shopingCart = new BehaviorSubject<book[]>([]);
+  books = new Array<book>();
+  constructor() {  }
 
   addBookToShopingCart(book: book){
-    if (this.shopingCart.indexOf(book) === -1) {
-      this.shopingCart.push(book);
+    if(this.books.indexOf(book)== -1) {
+      this.books.push(book);
     }
+    console.log(this.books);
+    this.shopingCart.next(this.books);
   }
 
-  removeBookFromShopingCert(book: book){
-    const index = this.shopingCart.indexOf(book);
-    this.shopingCart = this.shopingCart.filter(b => b !== book);
+  removeBookFromShopingCart(book: book){
+    // const index = this.shopingCart.indexOf(book);
+    // this.shopingCart = this.shopingCart.filter(b => b !== book);
+    this.books.filter(b => b===book);
+    this.shopingCart.next(this.books);
+    // this.shopingCart.pipe(map(books => {
+    //    return books.forEach(b => b!=book);
+    // }));
   }
 
-  get books(): Array<book> {
-    return this.shopingCart;
+  get cart(): Observable<book[]> {
+   return this.shopingCart as Observable<book[]>;
   }
 }

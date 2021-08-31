@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { iif, Observable, Subject } from 'rxjs';
 import { book, Books } from '../book-list/book-list';
 import { BookListService } from '../book-list/book-list.service';
 
@@ -8,20 +9,23 @@ import { BookListService } from '../book-list/book-list.service';
   styleUrls: ['./shoping-cart.component.scss']
 })
 export class ShopingCartComponent implements OnInit {
+  
+  
+  books: Observable<book[]>;
+  constructor(private bookService: BookListService) {    
+    this.books = this.bookService.cart;
+  }
 
-  books: Array<book>
-  constructor(private bookService: BookListService) {
-    if(this.bookService.books.length) {
-      this.books = this.bookService.books;
-    } else {
-      this.books = Books.slice(0 , Books.length - Math.floor(Math.random() * 10))
-    }
+  get bookCart$(): Observable<book[]> {
+    return this.books;
+  }
 
-    console.log(this.books);
-    
+  removeBook(book:book): void {
+    this.bookService.removeBookFromShopingCart(book);
   }
 
   ngOnInit(): void {
+    this.books = this.bookService.cart;
   }
 
 }

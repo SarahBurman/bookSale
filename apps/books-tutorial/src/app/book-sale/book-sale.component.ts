@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { book, Books, Category } from '../book-list/book-list';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { BookListService } from '../book-list/book-list.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'new-training-book-sale',
@@ -32,6 +33,11 @@ export class BookSaleComponent implements OnInit {
   get books(): book[] {
     return this.sortedBooks;
   }
+
+  get obooks$(): Observable<book[]> {
+    return this.bookService.shopingCart;
+  }
+
 
   get labels(): string[] {
     let labels = Object.keys(this.books[0]).filter(label => label !== 'id').map(label => {
